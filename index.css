@@ -1,0 +1,111 @@
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0.05vh 0.05vw;
+  background-color: #2D1B32;
+  color: #DBDBDB;
+  margin-top: 0.1vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1, h2 {
+  text-align: center;
+  font-family: 'PT Serif', serif;
+  color: #FFFFFF;
+}
+
+h1 {
+  font-variant: small-caps;
+}
+
+h2 {
+  text-decoration: underline;
+}
+
+.explanation {
+  width: 90%;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+#hidetext, #hidelinks {
+  width: 90%;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 10px;
+  display: none;
+  border: 1px solid #EDD5F4;
+  border-radius: 5px;
+}
+
+ul, ol {
+  margin: 5px 0;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+a {
+  color: #EDD5F4;
+  text-decoration: underline;
+}
+
+hr {
+  width: 50%;
+  margin-top: 4%;
+  color: white;
+}
+
+.container {
+  margin: auto;
+  width: 90%;
+  min-height: 60vh;
+  height: auto;
+  box-sizing: border-box;
+  padding: 1vw 2vw;
+}
+
+.left {
+  width: 45%;
+  float: left;
+}
+
+.right {
+  float: left;
+  width: 45%;
+  min-height: 56vh;
+  overflow: scroll;
+  padding-left: 2vw;
+}
+
+.credits {
+  font-style: italic;
+  font-size: 80%;
+  text-align: center;
+  width: 75%;
+  margin: auto;
+  padding: 3vh 0;
+  color: #FFFFFF;
+}
+
+.perkbox, .perksearch {
+  width: 35vw;
+  height:auto;
+  padding: 1vw 1vh;
+  border: 1px solid #EDD5F4;
+  border-radius: 5px;
+  margin-bottom: 2vh;
+  color: white;
+}
+
+.activePerk, .active {
+  background-color:#B29BB8;
+  color: #342737;
+}
