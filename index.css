@@ -17,6 +17,7 @@ h1, h2 {
   text-align: center;
   font-family: 'PT Serif', serif;
   color: #FFFFFF;
+  width:auto;
 }
 
 h1 {
@@ -69,7 +70,11 @@ hr {
   min-height: 60vh;
   height: auto;
   box-sizing: border-box;
+  border: 1px solid #EDD5F4;
+  border-radius: 5px;
   padding: 1vw 2vw;
+  margin-bottom: 3vh;
+  overflow-y: hidden;
 }
 
 .left {
@@ -78,11 +83,14 @@ hr {
 }
 
 .right {
-  float: left;
+  float: right;
   width: 45%;
   min-height: 56vh;
+  max-height: 60vh;
   overflow: scroll;
   padding-left: 2vw;
+  padding-bottom: 2vh;
+  margin-right: 2vw;
 }
 
 .credits {

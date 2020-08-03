@@ -131,6 +131,8 @@ function resetBuilder() {
   cost2 = 0;
   cost3 = 0;
   pcostStack = 0;
+
+  document.getElementById("rightbox").style.backgroundImage = "";
 }
 
 var perklist = [];
@@ -229,6 +231,8 @@ function getPerks() {
   var ability = document.getElementById("aType").value;
   var tP = document.getElementById("tTypeP").value.slice(-1);
   var tS = document.getElementById("tTypeS").value.slice(-1);
+
+  document.getElementById("rightbox").style.backgroundImage ="linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(30,15,30,0.4) 10%, rgba(30,15,30,0.4) 90%, rgba(0,0,0,0) 100%)";
 
   if (tP === "O" && ability === "passive") {
     search(perkPassiveO);
