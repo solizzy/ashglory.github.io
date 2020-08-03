@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-h1, h2 {
+h1, h2, h3 {
   text-align: center;
   font-family: 'PT Serif', serif;
   color: #FFFFFF;
@@ -24,7 +24,7 @@ h1 {
   font-variant: small-caps;
 }
 
-h2 {
+h2, h3 {
   text-decoration: underline;
 }
 
@@ -35,7 +35,7 @@ h2 {
   padding: 10px;
 }
 
-#hidetext, #hidelinks {
+#hidetext, #hidelinks, #hidechanges {
   width: 90%;
   margin: auto;
   box-sizing: border-box;
@@ -43,6 +43,12 @@ h2 {
   display: none;
   border: 1px solid #EDD5F4;
   border-radius: 5px;
+}
+
+#hidechanges {
+  font-size: 80%;
+  height: 15vh;
+  overflow: scroll;
 }
 
 ul, ol {

@@ -1,6 +1,9 @@
 var pCost = 200;
-var pCostStack = 0;
-var total = 0;
+var pCostStack = 50;
+var cost1 = 0;
+var cost2 = 0;
+var cost3 = 0;
+var total = pCost + cost1 + cost2 + cost3;
 
 function hideShow() {
   var x = document.getElementById("hidetext");
@@ -13,6 +16,15 @@ function hideShow() {
 
 function hideLinks() {
   var x = document.getElementById("hidelinks");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function hideChanges() {
+  var x = document.getElementById("hidechanges");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -35,6 +47,7 @@ function loadBuilder() {
     document.getElementById("tTypeS").disabled = false;
     document.getElementById("skill").disabled = false;
     document.getElementById("perkbutton").disabled = false;
+    document.getElementById("clearbutton").disabled = false;
   }
 
   if (ability === "passive") {
@@ -44,7 +57,7 @@ function loadBuilder() {
       x[i].style.visibility = "visible";
     }
     document.getElementById("builderror").innerHTML = "You have selected to build a " + ability.toUpperCase() + ". You may select up to two perks.";
-    document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(pCost + pCostStack).bold() + " dirham.";
+    document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(total).bold() + " dirham.";
   } else if (ability === "cm") {
     var x, i;
     x = document.querySelectorAll(".perkbox");
@@ -52,17 +65,17 @@ function loadBuilder() {
       x[i].style.visibility = "visible";
     }
     document.getElementById("builderror").innerHTML = "You have selected to build a " + ability.toUpperCase() + ". You may select up to three perks.";
-    document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(pCost + pCostStack).bold() + " dirham.";
+    document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(total).bold() + " dirham.";
   }
 }
 
 function selectPerk1() {
-  if(p1.classList.contains("activePerk")) {
-    document.getElementById("p1").classList.remove("activePerk");
+  if (p1.classList.contains("activePerk")) {
+    p1.classList.remove("activePerk");
   } else {
-    document.getElementById("p1").classList.add("activePerk");
-    document.getElementById("p2").classList.remove("activePerk");
-    document.getElementById("p3").classList.remove("activePerk");
+    p1.classList.add("activePerk");
+    p2.classList.remove("activePerk");
+    p3.classList.remove("activePerk");
   }
 }
 
@@ -104,6 +117,7 @@ function resetBuilder() {
   document.getElementById("skill").selectedIndex = 0;
 
   document.getElementById("perkbutton").disabled = true;
+  document.getElementById("clearbutton").disabled = true;
 
   document.getElementById("p1").classList.remove("activePerk");
   document.getElementById("p2").classList.remove("activePerk");
@@ -126,14 +140,44 @@ function resetBuilder() {
   }
 
   document.getElementById("perkcost").innerHTML = "";
-  total = 0;
   cost1 = 0;
   cost2 = 0;
   cost3 = 0;
-  pcostStack = 0;
 
   document.getElementById("rightbox").style.backgroundImage = "";
 }
+
+function clearPerk() {
+  if (p1.classList.contains("activePerk")) {
+      p1.innerHTML = "PERK #1";
+      cost1 = 0;
+      if (p3.innerHTML === "Stacking Perk Surcharge <br><strong>Cost:</strong> " + cost3 + "dh" && p1.innerHTML !== p2.innerHTML) {
+        p3.innerHTML = "PERK #3";
+        cost3 = 0;
+        p3.style.visibility = "hidden";
+      }
+      p1.classList.remove("activePerk");
+      total = pCost + cost1 + cost2 + cost3;
+      document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(total).bold() + " dirham.";
+  } else if (p2.classList.contains("activePerk")) {
+      p2.innerHTML = "PERK #2";
+      cost2 = 0;
+      if (p3.innerHTML === "Stacking Perk Surcharge <br><strong>Cost:</strong> " + cost3 + "dh" && p1.innerHTML !== p2.innerHTML) {
+        p3.innerHTML = "PERK #3";
+        cost3 = 0;
+        p3.style.visibility = "hidden";
+      }
+      p2.classList.remove("activePerk");
+      total = pCost + cost1 + cost2 + cost3;
+      document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(total).bold() + " dirham.";
+  } else if (p3.classList.contains("activePerk")) {
+      p3.innerHTML = "PERK #3";
+      cost3 = 0;
+      p3.classList.remove("activePerk");
+      total = pCost + cost1 + cost2 + cost3;
+      document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(total).bold() + " dirham.";
+    }
+  }
 
 var perklist = [];
 
@@ -284,8 +328,10 @@ function search(array) {
   var toAdd = document.createDocumentFragment();
   for(var y = 0; y < array.length; y++) {
     perksSearch = document.createElement('div');
-    perksSearch.id = "perks" + y;
-    perksSearch.className = 'perksearch';
+    perksSearch.className = "perksearch";
+    if (array[y].isSpecial === 1) {
+      perksSearch.classList.add("special");
+    };
     perksSearch.addEventListener("click", choosePerk, false);
     toAdd.appendChild(perksSearch);
     perksSearch.innerHTML = array[y].description + "<br><strong>Cost:</strong> " + array[y].cost + "dh";
@@ -293,58 +339,85 @@ function search(array) {
   document.getElementById("rightbox").appendChild(toAdd);
 }
 
-var transaction = [0];
-
 function choosePerk() {
   var ability = document.getElementById("aType").value;
-  if (this.classList.contains("active")) {
-    this.classList.remove("active");
-  } else {
-    var l, i;
-    l = document.querySelectorAll(".perksearch");
-    for (i = 0; i < l.length; i++) {
-      l[i].classList.remove("active");
+
+  if (document.querySelector(".activePerk").length !== 0 ) {
+      if (this.classList.contains("active")) {
+          this.classList.remove("active");
+        } else {
+          var l, i;
+          l = document.querySelectorAll(".perksearch");
+          for (i = 0; i < l.length; i++) {
+            l[i].classList.remove("active");
+          }
+          this.classList.add("active");
+        }
+
+        if (p1.classList.contains("sspecial") || p2.classList.contains("sspecial") || p3.classList.contains("sspecial")) {
+          /* if special perk has been input */
+          /* hide perk boxes that don't contain special perk */
+          if (p1.classList.contains("sspecial") === false) {
+            cost1 = 0;
+            p1.style.visibility = "hidden";
+            this.classList.remove("active");
+          }
+          if (p2.classList.contains("sspecial") === false) {
+            cost2 = 0;
+            p2.style.visibility = "hidden";
+            this.classList.remove("active");
+          }
+          if (p3.classList.contains("sspecial") === false) {
+            cost3 = 0;
+            p3.style.visibility = "hidden";
+            this.classList.remove("active");
+          }
+
+          document.getElementsByClassName("special").style.display = "none";
+          document.querySelector(".activePerk").innerHTML = document.querySelector(".active").innerHTML;
+          if (document.querySelector(".active").classList.contains("special")) {
+            /* what to do if special perk is selected */
+          }
+        }
+        document.querySelector(".activePerk").innerHTML = document.querySelector(".active").innerHTML;
+        this.classList.remove("active");
+
+        if (p1.innerHTML === "PERK #1") {
+          cost1 = 0;
+        } else {
+          cost1 = Number(p1.innerHTML.slice(-5,-2));
+        }
+
+        if (p2.innerHTML === "PERK #2") {
+          cost2 = 0;
+        } else {
+          cost2 = Number(p2.innerHTML.slice(-5,-2));
+        }
+
+        if (p3.innerHTML === "PERK #3") {
+          cost3 = 0;
+        } else {
+          cost3 = Number(p3.innerHTML.slice(-5,-2));
+        }
+
+        p1.classList.remove("activePerk");
+        p2.classList.remove("activePerk");
+        p3.classList.remove("activePerk");
+
+        if (p1.innerHTML === p2.innerHTML && ability === "passive") {
+          p3.style.visibility = "visible";
+          p3.removeEventListener("click", selectPerk3, false);
+          p3.innerHTML = "Stacking Perk Surcharge <br><strong>Cost:</strong> " + pCostStack + "dh";
+          cost3 = Number(p3.innerHTML.slice(-5,-2));
+        } else if (ability === "passive" && p1.innerHTML !== p2.innerHTML) {
+          p3.style.visibility = "hidden";
+          cost3 = 0;
+        }
+
+        total = pCost + cost1 + cost2 + cost3;
+        document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(total).bold() + " dirham.";
+      }
     }
-    this.classList.add("active");
-  }
-  document.querySelector(".activePerk").innerHTML = document.querySelector(".active").innerHTML;
-
-  if (p1.innerHTML === "PERK #1") {
-    var cost1 = 0;
-  } else {
-    var cost1 = Number(p1.innerHTML.slice(-5,-2));
-  }
-
-  if (p2.innerHTML === "PERK #2") {
-    var cost2 = 0;
-  } else {
-    var cost2 = Number(p2.innerHTML.slice(-5,-2));
-  }
-
-  if (p3.innerHTML === "PERK #3") {
-    var cost3 = 0;
-  } else {
-    var cost3 = Number(p3.innerHTML.slice(-5,-2));
-  }
-
-  document.getElementById("p1").classList.remove("activePerk");
-  document.getElementById("p2").classList.remove("activePerk");
-  document.getElementById("p3").classList.remove("activePerk");
-  this.classList.remove("active");
-
-  if (p1.innerHTML === p2.innerHTML && ability === "passive") {
-    p3.style.visibility = "visible";
-    p3.removeEventListener("click", selectPerk3, false);
-    cost3 = 50;
-    p3.innerHTML = "Stacking Perk Surcharge <br><strong>Cost:</strong> " + cost3 + "dh";
-  } else if (ability === "passive" && p1.innerHTML !== p2.innerHTML){
-    p3.style.visibility = "hidden";
-    cost3 = 0;
-  }
-
-  total = pCost + cost1 + cost2 + cost3;
-  document.getElementById("perkcost").innerHTML = "Your " + $("#aType option:selected").text() + " costs " + String(total).bold() + " dirham.";
-}
 
 $("select").on("change", function() {
   $('option').prop('disabled', false);

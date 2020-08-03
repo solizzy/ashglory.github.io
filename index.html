@@ -18,7 +18,6 @@
   <li>Numerical effects of perks in passives are NOT halved in this tool.</li>
   <li>It is currently possible to combine Special perks with other perks; please check in the Ability shop to make sure you are not combining a Special perk with another.</li>
   <li>There is not yet a distinction between your Primary and Secondary techniques.</li>
-  <li>It is not possible to remove perks from an ability; please use the Reset button.</li>
   <li>NOT OPTIMIZED FOR MOBILE SCREENS AT ALL</li>
   <li>And yes, this is hideous aesthetically and functionally, I know</li>
 </ul>
@@ -48,6 +47,15 @@
     <li><a href=http://tpk.jcink.net/index.php?showtopic=124>A Guide to Abilites: How to Establish Character Identity</a> by Lexiichuu</li>
     <li><a href=http://tpk.jcink.net/index.php?act=Pages&pid=1#condition>Conditions</a>
     <li><a href=http://tpk.jcink.net/index.php?act=Pages&pid=2>TPK Quick Reference</a>
+  </ul>
+</div>
+
+<h3 onclick="hideChanges()">Changelog</h3>
+<div id="hidechanges" style="display:none">
+  <span class="t">August 3, 2020</span>
+  <ul>
+    <li>Added the ability to deselect perks after adding them to your ability.</li>
+    <li>Added a box container and made it so the searched perks list doesn't stretch the screen. The perk list is scrollable.</li>
   </ul>
 </div>
 
@@ -203,6 +211,7 @@
   <br>
 
   <button id="perkbutton" disabled onclick="getPerks()">Get available perks</button>
+  &nbsp;<button id="clearbutton" disabled onclick="clearPerk()">Remove selected perk</button>
 
   <br><br>
 
