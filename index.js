@@ -101,6 +101,7 @@ function resetBuilder() {
   cost1 = 0;
   cost2 = 0;
   cost3 = 0;
+  total = pCost + cost1 + cost2 + cost3;
 }
 
 /* select an Ability Type and allow selection of techniques */
@@ -284,6 +285,7 @@ function addPerks(array) {
     perksSearch.addEventListener("click", choosePerk, false);
     toAdd.appendChild(perksSearch);
     perksSearch.innerHTML = array[y].description + "<br><strong>Cost:</strong> " + array[y].cost + "dh";
+    /* primary and secondary distinction */
     if (array[y].secondary === 1) {
       perksSearch.classList.add("secondary");
       perksSearch.classList.remove("primary");
@@ -291,6 +293,7 @@ function addPerks(array) {
       perksSearch.classList.add("primary");
       perksSearch.classList.remove("secondary");
     }
+    /* secondary only perks */
     if (array[y].onlysecondary === 1 && perksSearch.classList.contains("primary")) {
       perksSearch.style.display = "none";
     }
@@ -465,6 +468,7 @@ var perkPassiveO, perkPassiveOs,
     perkCMS, perkCMSs,
     perkCMC, perkCMCs;
 
+/* initial search */
 perkPassiveO = perklist.filter(one => one.isPassive === 1 && one.O === 1);
 perkCMO = perklist.filter(two => two.isCM === 1 && two.O === 1);
 perkPassiveD = perklist.filter(three => three.isPassive === 1 && three.D === 1);
@@ -474,6 +478,7 @@ perkCMS = perklist.filter(six => six.isCM === 1 && six.S === 1);
 perkPassiveC = perklist.filter(seven => seven.isPassive === 1 && seven.C === 1);
 perkCMC = perklist.filter(eight => eight.isCM === 1 && eight.C === 1);
 
+/* secondary technique distinction */
 perkPassiveOs = perkPassiveO.map(obj => ({...obj, "secondary": 1}));
 perkPassiveDs = perkPassiveD.map(obj => ({...obj, "secondary": 1}));
 perkPassiveSs = perkPassiveS.map(obj => ({...obj, "secondary": 1}));

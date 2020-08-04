@@ -87,6 +87,7 @@ hr {
   float: left;
   overflow-y: scroll;
   height: inherit;
+  max-height: 95vh;
 }
 
 .right {
@@ -137,8 +138,11 @@ hr {
 }
 
 /* RESPONSIVENESS */
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 320px) {
   body {
-    font-size: 80%;
+    font-size: 75%;
+  }
+  select, button {
+    font-size: 90%;
   }
 }
