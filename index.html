@@ -17,13 +17,11 @@
 <ul>
   <li>Numerical effects of perks in passives are NOT halved in this tool.</li>
   <li>It is currently possible to combine Special perks with other perks; please check in the Ability shop to make sure you are not combining a Special perk with another.</li>
-  <li>There is not yet a distinction between your Primary and Secondary techniques.</li>
-  <li>NOT OPTIMIZED FOR MOBILE SCREENS AT ALL</li>
   <li>And yes, this is hideous aesthetically and functionally, I know</li>
 </ul>
 <p>If you have any questions about using this builder, or any issues to report, please contact me through Discord @ashglory#8019</p></div>
-  <h2 onclick="hideShow()">How to use</h2>
-  <div id="hidetext" style="display:none">
+  <h2 onclick="hideTutorial()">How to use</h2>
+  <div id="hidetut" style="display:none">
     <ol>
       <li>First select whether you want to build a Passive or a Combat Maneuver (CM).</li>
         <ul>
@@ -35,6 +33,7 @@
           <li>Remember that the numerical effects of perks in passives are halved.</li>
           <li>You can double up on a perk within a passive, but doing so will add a 50 dirham surcharge to the whole passive.</li>
           <li>There are special perks that cannot be combined with other perks.</li>
+          <li>Perks that are available to be taken with your <span class="primary">Primary Technique</span> will appear in pale purple. Perks that you can take with your <span class="secondary">Secondary Technique</span> will be dark purple.</li>
         </ul>
       <li>The total cost for your constructed ability will be displayed as you select perks to add.</li>
       </ol>
@@ -52,6 +51,11 @@
 
 <h3 onclick="hideChanges()">Changelog</h3>
 <div id="hidechanges" style="display:none">
+  <span class="t">August 5, 2020</span>
+  <ul>
+    <li>Hopefully made it look a bit better for mobile devices.</li>
+    <li>Primary and Secondary Techniques are now distinguishable! For example: the perk "Add a secondary offensive technique's dice pool to your rolled damage" can now only be selected if you have chosen an Offensive technique as a secondary. Primary technique perks are light purple, Secondary technique perks are dark purple.</li>
+  </ul>
   <span class="t">August 3, 2020</span>
   <ul>
     <li>Added the ability to deselect perks after adding them to your ability.</li>
@@ -75,7 +79,7 @@
   <button id ="builder" onclick="loadBuilder()">Build</button>
   <button onclick="resetBuilder()">Reset</button>
 
-  <p id="builderror"></p>
+  <p id="typetext"></p>
 
   <formfield>
   Primary Technique:
@@ -199,7 +203,7 @@
    <br>
 
    Skill: <select id="skill" disabled="disabled">
-    <option value=""></option>
+    <option value="">--</option>
     <option value="str">STR</option>
     <option value="dex">DEX</option>
     <option value="con">CON</option>
