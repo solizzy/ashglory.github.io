@@ -85,7 +85,7 @@ hr {
 .left {
   width: 50%;
   float: left;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: inherit;
   max-height: 95vh;
 }
@@ -95,7 +95,7 @@ hr {
   width: 45%;
   min-height: 50vh;
   max-height: 95vh;
-  overflow: scroll;
+  overflow: auto;
   margin-right: 2vw;
 }
 
@@ -120,29 +120,44 @@ hr {
   box-sizing: border-box;
 }
 
-.activePerk, .active {
+.activePerk {
   background-color: #B29BB8;
   color: #342737;
+}
+
+.primary.active {
+  background-color: #F5D5FD;
+  color: #000000;
+  border: 1px solid #888888;
 }
 
 .primary {
   background-color: #B698BD;
   color: #000000;
-  border: 1px solid white;
+  border: 1px solid #ffffff;
+}
+
+.secondary.active {
+  background-color: #461950;
+  border: 1px solid #888888;
 }
 
 .secondary {
   background-color: #2B1031;
   color: #ffffff;
-  border: 1px solid black;
+  border: 1px solid #000000;
 }
 
 /* RESPONSIVENESS */
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 360px) {
   body {
     font-size: 75%;
   }
   select, button {
     font-size: 90%;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
   }
 }
