@@ -337,6 +337,10 @@ function addPerks(array) {
       perksSearch.classList.add("four");
     }
 
+    if (array[i].half === 1) {
+      perksSearch.classList.add("half");
+    }
+
     perksSearch.addEventListener("click", choosePerk, false);
     toAdd.appendChild(perksSearch);
   }
