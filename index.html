@@ -15,11 +15,7 @@
   <h1>TPK Passive and CM Builder</h1>
   <hr>
   <div class="explanation"><p>Welcome to the Passive and CM Builder for The Pillar Kingdoms RP site! This tool is designed to help you put together your passives and CMs easily while also seeing how much dirham they'd cost.</p>
-  <p>Please do note that this is still a really early build so there are a lot of features that aren't in yet. Namely:</p>
-<ul>
-  <li>Numerical effects of perks in passives are NOT halved in this tool.</li>
-</ul>
-<p>If you have any questions about using this builder, or any issues to report, please contact me through Discord @ashglory#8019</p></div>
+    <p>If you have any questions about using this builder, or any issues to report, please contact me through Discord @ashglory#8019</p></div>
   <h2 onclick="hideTutorial()">How to use</h2>
   <div id="hidetut" style="display:none">
     <ol>
@@ -30,7 +26,8 @@
       <li>Next, select the primary technique (and if applicable, secondary techniques and skill) you will be using for this ability. Certain perks may only be used with certain types of techniques. Upon clicking the 'Get available perks' button, you will see a list of perks that your technique(s) may take.</li>
       <li>Select the perks you would like to use.</li>
         <ul>
-          <li>Remember that the numerical effects of perks in passives are halved.</li>
+          <li>Remember that the numerical effects of perks in passives are halved. This is already accounted for you by the tool.</li>
+          <li>Always round down to a minimum of 1 (for straight boosts) or 1d10 (for dice pools).</li>
           <li>You can double up on a perk within a passive, but doing so will add a 50 dirham surcharge to the whole passive.</li>
           <li>Special perks cannot be combined with other perks.</li>
           <li>Perks that are available to be taken with your <span class="primary">Primary Technique</span> will appear in pale purple. Perks that you can take with your <span class="secondary">Secondary Technique</span> will be dark purple.</li>
@@ -51,6 +48,11 @@
 
 <h3 onclick="hideChanges()">Changelog</h3>
 <div id="hidechanges" style="display:none">
+  <span class="t">August 7, 2020</span>
+  <ul>
+    <li>The tool will now automatically halve the numerical bonuses of passives.</li>
+    <li>The tool will automatically replace filler text with the names of Techniques and Skills that you have chosen.</li>
+  </ul>
   <span class="t">August 6, 2020</span>
   <ul>
     <li>Special perks can no longer be combined with other perks.</li>
@@ -90,7 +92,7 @@
   <formfield>
   Primary Technique:
   <select id = "tTypeP" disabled="disabled">
-    <option value=""></option>
+    <option value="">Primary Technique</option>
     <option value = "aeolianO">Aeolian (Off)</option>
     <option value = "aeolianS">Aeolian (Sup)</option>
     <option value = "alchemyO">Alchemy (Off)</option>
@@ -150,7 +152,7 @@
 
   Secondary Technique:
   <select id = "tTypeS" disabled="disabled">
-    <option value="">--</option>
+    <option value="">Secondary Technique</option>
     <option value = "aeolianO">Aeolian (Off)</option>
     <option value = "aeolianS">Aeolian (Sup)</option>
     <option value = "alchemyO">Alchemy (Off)</option>
@@ -209,13 +211,13 @@
    <br>
 
    Skill: <select id="skill" disabled="disabled">
-    <option value="">--</option>
-    <option value="str">STR</option>
-    <option value="dex">DEX</option>
-    <option value="con">CON</option>
-    <option value="int">INT</option>
-    <option value="wis">WIS</option>
-    <option value="cha">CHA</option>
+    <option value="SKILL">---</option>
+    <option value="STR">STR</option>
+    <option value="DEX">DEX</option>
+    <option value="CON">CON</option>
+    <option value="INT">INT</option>
+    <option value="WIS">WIS</option>
+    <option value="CHA">CHA</option>
   </select>
   </formfield>
   <br>
