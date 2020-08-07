@@ -9,8 +9,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Anonymous Pro', 'Courier New', monospace;
 }
 
 h1, h2, h3 {
@@ -47,7 +46,7 @@ h2, h3 {
 #hidechanges {
   font-size: 80%;
   height: 15vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 ul, ol {
@@ -146,6 +145,10 @@ hr {
   background-color: #2B1031;
   color: #ffffff;
   border: 1px solid #000000;
+}
+
+.p.perkbox, .p.perksearch {
+  display: inline;
 }
 
 /* RESPONSIVENESS */
