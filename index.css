@@ -3,17 +3,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0.05vh 0.05vw;
-  background-color: #2D1B32;
+  background-color: #443048;
   color: #DBDBDB;
   margin-top: 0.1vh;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Anonymous Pro', 'Courier New', monospace;
 }
 
-h1, h2 {
+h1, h2, h3 {
   text-align: center;
   font-family: 'PT Serif', serif;
   color: #FFFFFF;
@@ -23,7 +22,7 @@ h1 {
   font-variant: small-caps;
 }
 
-h2 {
+h2, h3 {
   text-decoration: underline;
 }
 
@@ -34,7 +33,7 @@ h2 {
   padding: 10px;
 }
 
-#hidetext, #hidelinks {
+#hidetut, #hidelinks, #hidechanges {
   width: 90%;
   margin: auto;
   box-sizing: border-box;
@@ -42,6 +41,12 @@ h2 {
   display: none;
   border: 1px solid #EDD5F4;
   border-radius: 5px;
+}
+
+#hidechanges {
+  font-size: 80%;
+  height: 15vh;
+  overflow: auto;
 }
 
 ul, ol {
@@ -69,20 +74,28 @@ hr {
   min-height: 60vh;
   height: auto;
   box-sizing: border-box;
+  border: 1px solid #EDD5F4;
+  border-radius: 5px;
   padding: 1vw 2vw;
+  margin-bottom: 3vh;
+  overflow-y: hidden;
 }
 
 .left {
-  width: 45%;
+  width: 50%;
   float: left;
+  overflow-y: auto;
+  height: inherit;
+  max-height: 95vh;
 }
 
 .right {
-  float: left;
+  float: right;
   width: 45%;
-  min-height: 56vh;
-  overflow: scroll;
-  padding-left: 2vw;
+  min-height: 50vh;
+  max-height: 95vh;
+  overflow: auto;
+  margin-right: 2vw;
 }
 
 .credits {
@@ -97,15 +110,57 @@ hr {
 
 .perkbox, .perksearch {
   width: 35vw;
-  height:auto;
+  height: auto;
   padding: 1vw 1vh;
   border: 1px solid #EDD5F4;
   border-radius: 5px;
   margin-bottom: 2vh;
   color: white;
+  box-sizing: border-box;
 }
 
-.activePerk, .active {
-  background-color:#B29BB8;
+.activePerk {
+  background-color: #B29BB8;
   color: #342737;
+}
+
+.primary.active {
+  background-color: #F5D5FD;
+  color: #000000;
+  border: 1px solid #888888;
+}
+
+.primary {
+  background-color: #B698BD;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.secondary.active {
+  background-color: #461950;
+  border: 1px solid #888888;
+}
+
+.secondary {
+  background-color: #2B1031;
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.p.perkbox, .p.perksearch {
+  display: inline;
+}
+
+/* RESPONSIVENESS */
+@media only screen and (max-width: 360px) {
+  body {
+    font-size: 75%;
+  }
+  select, button {
+    font-size: 90%;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
 }
